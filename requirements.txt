@@ -1,0 +1,16 @@
+# Travel Deal Optimizer - Dependencies
+# Install: pip install -r requirements.txt
+
+# Core
+pyyaml>=6.0              # Configuration file parsing
+
+# Optional: API integrations (uncomment if using)
+# serpapi>=0.1.5         # Google Flights API (paid)
+# requests>=2.31.0       # HTTP requests
+
+# Optional: Enhanced reports
+# weasyprint>=60.0       # PDF generation (requires system deps)
+# pandas>=2.0.0          # Data analysis
+
+# Development
+pytest>=7.0.0            # Testing

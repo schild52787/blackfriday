@@ -1,0 +1,206 @@
+# =============================================================================
+# TRAVEL DEAL OPTIMIZER - CONFIGURATION
+# Black Friday 2025 Edition
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# TRAVELER PROFILE
+# -----------------------------------------------------------------------------
+traveler:
+  family_size: 4
+  adults: 2
+  children:
+    - age: 7  # Elle
+    - age: 5  # Luka
+  
+  home_airport: "MSP"
+  preferred_airline: "Delta"
+  elite_status: "Diamond"  # Diamond Medallion benefits
+  
+  # Travel dates (flexible window)
+  travel_window:
+    earliest_departure: "2026-03-27"
+    latest_return: "2026-04-05"
+    preferred_duration_days: 7  # Can flex 6-9
+    flexibility_days: 3  # Days before/after window to consider
+
+# -----------------------------------------------------------------------------
+# BUDGET & POINTS PORTFOLIO
+# -----------------------------------------------------------------------------
+budget:
+  max_total_cash: 12000  # Hard ceiling
+  target_total: 10000    # Preferred ceiling
+  
+points_portfolio:
+  amex_mr:
+    balance: 170000
+    # Transfer partners with current bonus multipliers (update as needed)
+    transfer_partners:
+      delta: { ratio: 1.0, bonus: 0 }
+      air_france_klm: { ratio: 1.0, bonus: 0 }
+      virgin_atlantic: { ratio: 1.0, bonus: 0 }
+      british_airways: { ratio: 1.0, bonus: 0 }
+      aeroplan: { ratio: 1.0, bonus: 0 }
+      singapore: { ratio: 1.0, bonus: 0 }
+      ana: { ratio: 1.0, bonus: 0 }
+      # Hotel partners
+      hilton: { ratio: 2.0, bonus: 0 }  # 2:1 transfer
+      marriott: { ratio: 1.0, bonus: 0 }  # Marriott has different structure
+      
+  delta_skymiles:
+    balance: 100000
+    
+# -----------------------------------------------------------------------------
+# DESTINATION TARGETS
+# -----------------------------------------------------------------------------
+destinations:
+  # Mexico/Caribbean - All-inclusive ONLY
+  mexico_caribbean:
+    priority: 1
+    type: "all_inclusive"
+    airports:
+      - "CUN"  # Cancun
+      - "PVR"  # Puerto Vallarta
+      - "SJD"  # Cabo
+      - "MBJ"  # Montego Bay
+      - "PUJ"  # Punta Cana
+      - "AUA"  # Aruba
+    
+    # Resort brands to prioritize
+    preferred_resorts:
+      - "Hyatt Ziva/Zilara"
+      - "Excellence"
+      - "Secrets"
+      - "Dreams"
+      - "Hard Rock"
+      - "Royalton"
+    
+    # Deal thresholds (per person per night, all-inclusive)
+    pricing_thresholds:
+      excellent: 250  # Under this = alert immediately
+      good: 350
+      acceptable: 450
+      max: 550  # Won't consider above
+      
+  # Southern Europe - Food destinations
+  europe:
+    priority: 2
+    type: "hotel_separate"
+    airports:
+      - "FCO"  # Rome
+      - "NAP"  # Naples
+      - "BCN"  # Barcelona
+      - "MAD"  # Madrid
+      - "ATH"  # Athens
+      - "LIS"  # Lisbon
+      - "MXP"  # Milan
+      - "VCE"  # Venice
+    
+    # Flight thresholds (roundtrip per person)
+    flight_thresholds:
+      excellent_cash: 600
+      good_cash: 800
+      acceptable_cash: 1000
+      
+    # Award thresholds (roundtrip per person, economy)
+    award_thresholds:
+      excellent_miles: 45000
+      good_miles: 60000
+      acceptable_miles: 80000
+      
+    # Hotel thresholds (per night for family)
+    hotel_thresholds:
+      excellent: 200
+      good: 300
+      acceptable: 400
+
+# -----------------------------------------------------------------------------
+# VALUE CALCULATION PARAMETERS
+# -----------------------------------------------------------------------------
+value_calc:
+  # Baseline point values (cents per point)
+  baseline_cpp:
+    amex_mr: 1.5   # Conservative baseline
+    delta_skymiles: 1.2
+    hilton: 0.5
+    marriott: 0.8
+    
+  # Good redemption values (target these)
+  target_cpp:
+    amex_mr: 2.0
+    delta_skymiles: 1.5
+    hilton: 0.6
+    marriott: 1.0
+    
+  # Minimum acceptable values (below this, pay cash)
+  min_cpp:
+    amex_mr: 1.2
+    delta_skymiles: 1.0
+    hilton: 0.4
+    marriott: 0.7
+    
+  # Diamond Medallion value factors
+  diamond_benefits:
+    upgrade_probability: 0.40  # ~40% upgrade success
+    upgrade_value_multiplier: 1.5  # Premium cabin = 1.5x economy value
+    companion_certificate_value: 800  # Approx cash value
+
+# -----------------------------------------------------------------------------
+# ALERT CONFIGURATION
+# -----------------------------------------------------------------------------
+alerts:
+  # Email alerts
+  email:
+    enabled: true
+    smtp_server: "smtp.gmail.com"
+    smtp_port: 587
+    sender: ""  # Fill in your email
+    recipient: ""  # Fill in your email
+    # App password (use environment variable)
+    password_env_var: "EMAIL_APP_PASSWORD"
+    
+  # Threshold triggers
+  thresholds:
+    deal_discount_pct: 25  # Alert when 25%+ below baseline
+    award_sweet_spot: true  # Alert on premium cabin award availability
+    flash_sale_hours: 48  # Flag deals expiring within 48 hours
+    
+  # Quiet hours (no alerts)
+  quiet_hours:
+    start: "22:00"
+    end: "07:00"
+    timezone: "America/Chicago"
+
+# -----------------------------------------------------------------------------
+# MONITORING SCHEDULE
+# -----------------------------------------------------------------------------
+schedule:
+  # Black Friday monitoring window
+  monitoring_period:
+    start: "2025-11-25"
+    end: "2025-12-02"
+    
+  # Check frequency (hours)
+  check_interval_hours: 12
+  
+  # Specific check times
+  check_times:
+    - "08:00"
+    - "20:00"
+
+# -----------------------------------------------------------------------------
+# DATA SOURCES (API Keys in environment variables)
+# -----------------------------------------------------------------------------
+data_sources:
+  # SerpAPI for Google Flights (legitimate API)
+  serpapi:
+    enabled: true
+    api_key_env: "SERPAPI_KEY"
+    
+  # Manual entry (always enabled)
+  manual_entry:
+    enabled: true
+    
+  # Historical baseline file
+  baseline_data:
+    file: "data/baseline_prices.json"

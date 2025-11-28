@@ -1,0 +1,19 @@
+{
+  "MSP-CUN-2026-03": 1800,
+  "MSP-PVR-2026-03": 1600,
+  "MSP-SJD-2026-03": 2000,
+  "MSP-MBJ-2026-03": 2200,
+  "MSP-PUJ-2026-03": 2400,
+  "MSP-AUA-2026-03": 2600,
+  "MSP-FCO-2026-03": 4000,
+  "MSP-BCN-2026-03": 3800,
+  "MSP-MAD-2026-03": 3600,
+  "MSP-ATH-2026-03": 4200,
+  "MSP-LIS-2026-03": 3400,
+  "MSP-NAP-2026-03": 4400,
+  "_notes": {
+    "description": "Baseline prices for family of 4, roundtrip economy",
+    "source": "Pre-Black Friday estimates based on typical pricing",
+    "updated": "2025-11-20"
+  }
+}

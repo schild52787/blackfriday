@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "travel-deals": {
+      "command": "python",
+      "args": ["-m", "app.mcp_server"],
+      "cwd": "/REPLACE/WITH/YOUR/PATH/travel-deal-optimizer"
+    }
+  }
+}

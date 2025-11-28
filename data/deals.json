@@ -1,0 +1,27 @@
+{
+  "flight_MSP_CUN_2026-03-27_Delta_flight_cash": {
+    "origin": "MSP",
+    "destination": "CUN",
+    "departure_date": "2026-03-27",
+    "return_date": "2026-04-03",
+    "deal_type": "flight_cash",
+    "price_cash": 1600.0,
+    "price_points": null,
+    "points_currency": null,
+    "taxes_fees": 0.0,
+    "airline": "Delta",
+    "cabin_class": "economy",
+    "stops": 0,
+    "cpp_value": null,
+    "total_value": 1600.0,
+    "savings_vs_cash": null,
+    "source": "CLI",
+    "booking_url": "",
+    "found_at": "2025-11-28T16:33:23.061356",
+    "expires_at": null,
+    "status": "acceptable",
+    "notes": " [Diamond upgrade potential: +$320 expected value]",
+    "_key": "flight_MSP_CUN_2026-03-27_Delta_flight_cash",
+    "_updated_at": "2025-11-28T16:33:23.061404"
+  }
+}
